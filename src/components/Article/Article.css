@@ -1,0 +1,33 @@
+h1 { font-size: 30px; }
+
+.article-div {
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 25px;
+    text-decoration: none;
+    color: #000;
+}
+.article-div:hover > div > h1 {
+    color: blue;
+    text-decoration: underline;
+}
+.article-div > div {
+    padding: 20px;
+}
+.article-image > img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.article-contents > h3 {
+    opacity: .7;
+}
+.article-contents > p {
+    margin: 15px 0;
+}
+.article-contents > div {
+    font-weight: 700;
+}

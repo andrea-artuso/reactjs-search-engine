@@ -1,5 +1,6 @@
 import './App.css';
 import { SearchIcon } from '@heroicons/react/solid'
+import Article from './components/Article/Article'
 import { useState } from 'react';
 import { configData } from './privateConfig'
 
@@ -7,7 +8,6 @@ function App() {
   const [searchInput, setSearchInput] = useState('');
   const [articles, setArticles] = useState([]);
   const [areDataLoaded, setAreDataLoaded] = useState(false);
-
 
   return (
     <div className="App">
@@ -25,7 +25,9 @@ function App() {
 
       <div className="data-container">
         {
-          areDataLoaded ? articles.map(article => ( <h1 key={article.url}>{article.author}</h1> )) : <h1 className="loading-text">Waiting for search...</h1>
+          articles!==undefined ?
+          (areDataLoaded ? articles.map(article => ( <Article key={article.title} title={article.title} author={article.author} description={article.description} publishedAt={article.publishedAt} sourceName={article.source.name} url={article.url} urlToImage={article.urlToImage} /> )) : <h1 className="loading-text">Waiting for search...</h1>)
+          : <h1 className="loading-text">No results found</h1>
         }
       </div>
     </div>
@@ -46,9 +48,9 @@ function fetchData(input, setArticles, setAreDataLoaded){
       .then(response => response.json())
       .then(data => 
         {
-          setArticles(data.articles)
+          setArticles(data.articles);
+          setAreDataLoaded(true);
         })
-    setAreDataLoaded(true);
   }
 }
 

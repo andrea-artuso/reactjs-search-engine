@@ -44,6 +44,12 @@
   transform: translate(-50%);
 }
 
+.data-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 @media screen and (max-width: 900px) {
   .website-header > .input-container {
