@@ -26,7 +26,7 @@ function App() {
       <div className="data-container">
         {
           articles!==undefined ?
-          (areDataLoaded ? articles.map(article => ( <Article key={article.title} title={article.title} author={article.author} description={article.description} publishedAt={article.publishedAt} sourceName={article.source.name} url={article.url} urlToImage={article.urlToImage} /> )) : <h1 className="loading-text">Waiting for search...</h1>)
+          (areDataLoaded ? (articles.length>0 ? articles.map(article => ( <Article key={article.title} title={article.title} author={article.author} description={article.description} publishedAt={article.publishedAt} sourceName={article.source.name} url={article.url} urlToImage={article.urlToImage} /> )) : <h1 className="loading-text">No results found</h1>) : <h1 className="loading-text">Waiting for search...</h1>)
           : <h1 className="loading-text">No results found</h1>
         }
       </div>
@@ -34,6 +34,7 @@ function App() {
   );
 }
 
+//articles.map(article => ( <Article key={article.title} title={article.title} author={article.author} description={article.description} publishedAt={article.publishedAt} sourceName={article.source.name} url={article.url} urlToImage={article.urlToImage} /> ))
 
 function fetchData(input, setArticles, setAreDataLoaded){
   if (input !== ""){
@@ -49,7 +50,9 @@ function fetchData(input, setArticles, setAreDataLoaded){
       .then(data => 
         {
           setArticles(data.articles);
-          setAreDataLoaded(true);
+          setTimeout(()=>{
+            setAreDataLoaded(true);
+          }, 500);
         })
   }
 }
